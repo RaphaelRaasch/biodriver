@@ -1,0 +1,2 @@
+lib/app/shared/store/user_store.dart
+test/app/shared/store/user_store_test.dart

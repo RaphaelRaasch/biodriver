@@ -1,0 +1,4 @@
+lib/app/modules/home/pages/cientes/cientes_page.dart
+test/app/modules/home/pages/cientes/cientes_page_test.dart
+lib/app/modules/home/pages/cientes/cientes_controller.dart
+test/app/modules/home/pages/cientes/cientes_controller_test.dart

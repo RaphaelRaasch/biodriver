@@ -1,0 +1,2 @@
+lib/app/modules/clientes/location_store.dart
+test/app/modules/clientes/location_store_test.dart

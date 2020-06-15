@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "456915358113",
+    "firebase_url": "https://track-bio.firebaseio.com",
+    "project_id": "track-bio",
+    "storage_bucket": "track-bio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456915358113:android:c3536132420f3c837e3be0",
+        "android_client_info": {
+          "package_name": "com.multidev.biodriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456915358113-pen5r4uqveeasc27383qcet7o25ls2sf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5ruvG075WwPFfExNwH0NkYSm6kKYOcsw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456915358113-pen5r4uqveeasc27383qcet7o25ls2sf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
