@@ -20,9 +20,11 @@ class CustomForm extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    double sh = MediaQuery.of(context).size.height;
+    double sw = MediaQuery.of(context).size.width;
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: sh * 0.02),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
@@ -35,7 +37,7 @@ class CustomForm extends StatelessWidget {
           ],
           color: Colors.white),
       //width: MediaQuery.of(context).size.width,
-      height: 70,
+      height: sh * 0.07,
       width: double.maxFinite,
       child: Center(
         child: TextFormField(
@@ -50,7 +52,7 @@ class CustomForm extends StatelessWidget {
             suffixIcon: sufix,
             prefixIcon: prefix,
           ),
-          style: TextStyle(fontSize: 25),
+          style: TextStyle(fontSize: sh * 0.016),
         ),
       ),
     );

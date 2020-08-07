@@ -1,11 +1,11 @@
 import 'package:biodriver/app/modules/home/mtr_repository.dart';
-import 'package:biodriver/app/shared/model/cliente_model.dart';
 import 'package:biodriver/app/shared/model/mtr_model.dart';
 import 'package:biodriver/app/shared/store/user_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../app_controller.dart';
+import '../../shared/model/mtr_model.dart';
 
 part 'home_controller.g.dart';
 
@@ -21,21 +21,20 @@ abstract class _HomeControllerBase with Store {
   }
 
   @observable
-  ObservableFuture<List<MtrModel>> observableFuture;
+  ObservableFuture<List<MtrItemModel>> observableFuture;
 
   @observable
-  List<MtrModel> listMtr;
+  List<MtrItemModel> listMtr;
 
   @observable
   bool isLoading = false;
 
   @observable
-  ObservableList<ClienteModel> clientList = <ClienteModel>[].asObservable();
+  ObservableList<Sequencia> clientList = <Sequencia>[].asObservable();
 
   @action
   Future<void> loadMtr() async {
-    List<MtrModel> list = await _mtrRepository.getAllMtrs();
-    print('Lista ${list[0]}');
+    List<MtrItemModel> list = await _mtrRepository.getAllMtrs();
     observableFuture = ObservableFuture(_mtrRepository.getAllMtrs());
     listMtr = await observableFuture;
   }

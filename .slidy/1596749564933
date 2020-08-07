@@ -1,0 +1,4 @@
+lib/app/modules/home/widgets/badge/badge_widget.dart
+test/app/modules/home/widgets/badge/badge_widget_test.dart
+lib/app/modules/home/widgets/badge/badge_controller.dart
+test/app/modules/home/widgets/badge/badge_controller_test.dart

@@ -12,13 +12,13 @@ mixin _$MtrStore on _MtrStoreBase, Store {
   final _$mtrModelAtom = Atom(name: '_MtrStoreBase.mtrModel');
 
   @override
-  List<MtrModel> get mtrModel {
+  List<MtrItemModel> get mtrModel {
     _$mtrModelAtom.reportRead();
     return super.mtrModel;
   }
 
   @override
-  set mtrModel(List<MtrModel> value) {
+  set mtrModel(List<MtrItemModel> value) {
     _$mtrModelAtom.reportWrite(value, super.mtrModel, () {
       super.mtrModel = value;
     });
@@ -28,7 +28,7 @@ mixin _$MtrStore on _MtrStoreBase, Store {
       ActionController(name: '_MtrStoreBase');
 
   @override
-  void getAllMtr(List<MtrModel> v) {
+  void getAllMtr(List<MtrItemModel> v) {
     final _$actionInfo = _$_MtrStoreBaseActionController.startAction(
         name: '_MtrStoreBase.getAllMtr');
     try {

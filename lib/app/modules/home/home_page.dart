@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'home_controller.dart';
+import 'widgets/list_item.widget.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -55,24 +56,14 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   child: CircularProgressIndicator(),
                 )
               : ListView.builder(
-                  padding: EdgeInsets.only(left: 10, right: 10, top: 10),
-                  addAutomaticKeepAlives: true,
-                  scrollDirection: Axis.vertical,
                   itemCount: list.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      leading: Icon(
-                        Icons.flag,
-                        color: Colors.black,
-                      ),
-                      title: Text(
-                        list[index].alias,
-                        style: TextStyle(color: Colors.black, fontSize: 25),
-                      ),
-                      subtitle: Text(list[index].numero.toString()),
-                      onTap: () {
+                    return ListWidget(
+                      alias: list[index].mtr.alias,
+                      number: list[index].mtr.numero.toString(),
+                      clientOnPressed: () {
                         Modular.to.pushNamed('/clientes',
-                            arguments: list[index].cliente);
+                            arguments: list[index].sequencia);
                       },
                     );
                   },

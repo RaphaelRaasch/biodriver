@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'login_controller.dart';
+import 'widgets/custom_form.widget.dart';
 
 class LoginPage extends StatefulWidget {
   final String title;
@@ -17,79 +18,77 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    var sizeW = MediaQuery.of(context).size.width;
+    double sh = MediaQuery.of(context).size.height;
+    double sw = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              height: sizeW + sizeW / 2,
-              child: Observer(
-                builder: (context) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+      body: Observer(
+        builder: (context) {
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: sh * 0.6,
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: sw * 0.02),
+                  height: sh * 0.4,
+                  child: Column(
+                    children: [
+                      CustomForm(
+                          sufix: SizedBox(),
+                          prefix: Icon(Icons.email),
+                          hint: 'EMAIL',
+                          obscure: false,
+                          enabled: true,
+                          onChanged: (value) {
+                            controller.email = value;
+                          },
+                          type: TextInputType.emailAddress),
                       SizedBox(
-                        height: 200,
+                        height: sh * 0.03,
                       ),
                       CustomForm(
-                        enabled: true,
-                        hint: 'Email',
-                        obscure: false,
-                        onChanged: (value) {
-                          controller.email = value;
-                        },
-                        prefix: Icon(Icons.email),
                         sufix: SizedBox(),
-                        type: TextInputType.emailAddress,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      CustomForm(
-                        enabled: true,
-                        hint: 'Password',
+                        prefix: Icon(Icons.lock),
+                        hint: 'PASSWORD',
                         obscure: true,
+                        enabled: true,
                         onChanged: (value) {
                           controller.password = value;
                         },
-                        prefix: Icon(Icons.lock),
-                        sufix: Icon(Icons.visibility),
                         type: TextInputType.text,
                       ),
-                      SizedBox(
-                        height: 100,
+                      Expanded(
+                        child: SizedBox(),
                       ),
                       Container(
-                        height: 80,
-                        width: double.maxFinite,
-                        child: FlatButton(
-                          onPressed: () {
-                            controller.login();
-                          },
-                          child: Text(
-                            'ENTRAR',
-                            style: TextStyle(
-                              fontSize: 25,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w300,
-                              shadows: [
-                                Shadow(
-                                  blurRadius: 5,
-                                  color: Colors.grey,
-                                  offset: Offset(2, 2),
+                        height: sh * 0.08,
+                        width: sw * 0.6,
+                        child: controller.loading == false
+                            ? FlatButton(
+                                onPressed: () {
+                                  controller.login();
+                                },
+                                child: Text(
+                                  'Acessar',
+                                  style: TextStyle(
+                                    color: Colors.black54,
+                                    fontSize: sh * 0.02,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        ),
+                              )
+                            : Center(
+                                child: CircularProgressIndicator(),
+                              ),
                       ),
                     ],
-                  );
-                },
-              )),
-        ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

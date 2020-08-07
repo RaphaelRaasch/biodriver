@@ -1,63 +1,53 @@
+import 'package:biodriver/app/modules/home/widgets/badge/badge_widget.dart';
 import 'package:flutter/material.dart';
 
 class ListWidget extends StatelessWidget {
-  final text;
-  final numero;
+  final alias;
+  final number;
+  final clientOnPressed;
 
   const ListWidget({
-    @required this.text,
-    @required this.numero,
+    @required this.alias,
+    @required this.number,
+    @required this.clientOnPressed,
   });
-
   @override
   Widget build(BuildContext context) {
+    double sh = MediaQuery.of(context).size.height;
+    double sw = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-      ),
+      padding: EdgeInsets.symmetric(vertical: sh * 0.01),
       child: Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 2,
-              color: Colors.black12,
-              offset: Offset(2, 2),
-              spreadRadius: 2,
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            text,
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    color: Colors.red,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        numero,
-                      ],
-                    ),
-                  ),
+        height: sh * 0.1,
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BadgeWidget(
+                  text: alias,
                 ),
-                Expanded(
-                  child: Container(
-                    height: 60,
-                    color: Colors.blue,
-                  ),
+                SizedBox(
+                  height: sh * 0.01,
+                ),
+                BadgeWidget(
+                  text: number,
                 ),
               ],
+            ),
+            Container(
+              width: sw * 0.5,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  FlatButton(
+                    onPressed: clientOnPressed,
+                    child: Text('Clientes'),
+                  ),
+                ],
+              ),
             )
           ],
         ),

@@ -13,13 +13,13 @@ mixin _$HomeController on _HomeControllerBase, Store {
       Atom(name: '_HomeControllerBase.observableFuture');
 
   @override
-  ObservableFuture<List<MtrModel>> get observableFuture {
+  ObservableFuture<List<MtrItemModel>> get observableFuture {
     _$observableFutureAtom.reportRead();
     return super.observableFuture;
   }
 
   @override
-  set observableFuture(ObservableFuture<List<MtrModel>> value) {
+  set observableFuture(ObservableFuture<List<MtrItemModel>> value) {
     _$observableFutureAtom.reportWrite(value, super.observableFuture, () {
       super.observableFuture = value;
     });
@@ -28,13 +28,13 @@ mixin _$HomeController on _HomeControllerBase, Store {
   final _$listMtrAtom = Atom(name: '_HomeControllerBase.listMtr');
 
   @override
-  List<MtrModel> get listMtr {
+  List<MtrItemModel> get listMtr {
     _$listMtrAtom.reportRead();
     return super.listMtr;
   }
 
   @override
-  set listMtr(List<MtrModel> value) {
+  set listMtr(List<MtrItemModel> value) {
     _$listMtrAtom.reportWrite(value, super.listMtr, () {
       super.listMtr = value;
     });
@@ -58,13 +58,13 @@ mixin _$HomeController on _HomeControllerBase, Store {
   final _$clientListAtom = Atom(name: '_HomeControllerBase.clientList');
 
   @override
-  ObservableList<ClienteModel> get clientList {
+  ObservableList<Sequencia> get clientList {
     _$clientListAtom.reportRead();
     return super.clientList;
   }
 
   @override
-  set clientList(ObservableList<ClienteModel> value) {
+  set clientList(ObservableList<Sequencia> value) {
     _$clientListAtom.reportWrite(value, super.clientList, () {
       super.clientList = value;
     });

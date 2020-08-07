@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:map_launcher/map_launcher.dart';
+import '../../shared/model/mtr_model.dart';
 import 'clientes_controller.dart';
 
 class ClientesPage extends StatefulWidget {
   final String title;
-  final List<ClienteModel> clientes;
-  const ClientesPage({Key key, this.title = "Clientes", this.clientes})
+  final List<Sequencia> sequencia;
+  const ClientesPage({Key key, this.title = "Clientes", this.sequencia})
       : super(key: key);
 
   @override
@@ -38,7 +39,7 @@ class _ClientesPageState
           builder: (context) {
             return ListView.builder(
               padding: EdgeInsets.all(10),
-              itemCount: widget.clientes.length,
+              itemCount: widget.sequencia.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   onTap: () {
@@ -52,13 +53,13 @@ class _ClientesPageState
                         borderRadius: BorderRadius.circular(10)),
                   ),
                   title: Text(
-                    widget.clientes[index].fantasia,
+                    widget.sequencia[index].cliente.toString(),
                     style: TextStyle(fontSize: 25),
                   ),
                   onLongPress: () {
                     createAlert(context, index);
                   },
-                  subtitle: Text(widget.clientes[index].municipio),
+                  subtitle: Text(widget.sequencia[index].municipio),
                 );
               },
             );
@@ -74,7 +75,7 @@ class _ClientesPageState
         context,
       ) {
         return AlertDialog(
-          title: Text(widget.clientes[index].fantasia),
+          title: Text(widget.sequencia[index].cliente.toString()),
           content: Container(
             height: MediaQuery.of(context).size.height / 2,
             child: Column(
@@ -85,14 +86,14 @@ class _ClientesPageState
                 ),
                 Row(),
                 Container(
-                  child: Text(widget.clientes[index].logradouro),
+                  child: Text(widget.sequencia[index].rua),
                 ),
                 Container(
-                  child: Text(widget.clientes[index].bairro),
+                  child: Text(widget.sequencia[index].bairro),
                 ),
                 Container(
                   child: Text(
-                      '${widget.clientes[index].municipio} - ${widget.clientes[index].estado}'),
+                      '${widget.sequencia[index].municipio} - ${widget.sequencia[index].estado}'),
                 ),
                 SizedBox(
                   height: 50,
@@ -127,29 +128,30 @@ class _ClientesPageState
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(widget.clientes[index].fantasia),
+          title: Text(widget.sequencia[index].cliente.toString()),
           content: Container(
             height: MediaQuery.of(context).size.width / 2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('Logradouro: ${widget.clientes[index].logradouro}'),
-                Text('Bairro: ${widget.clientes[index].bairro}'),
-                Text('Municipio: ${widget.clientes[index].municipio}'),
+                Text('Logradouro: ${widget.sequencia[index].rua}'),
+                Text('Bairro: ${widget.sequencia[index].bairro}'),
+                Text('Municipio: ${widget.sequencia[index].municipio}'),
               ],
             ),
           ),
           actions: <Widget>[
             IconButton(icon: Icon(Icons.call), onPressed: () {}),
             FlatButton(
-                color: Colors.black,
-                onPressed: () {
-                  locattion.gestor = widget.clientes[index].gestao.toString();
-                  openMapsSheet(context, index);
-                  locattion.getLocation();
-                  print('OK');
-                },
-                child: Text('Iniciar Viagem'))
+              color: Colors.black,
+              onPressed: () {
+                locattion.gestor = widget.sequencia[index].cliente.toString();
+                openMapsSheet(context, index);
+                locattion.getLocation();
+                print('OK');
+              },
+              child: Text('Iniciar Viagem'),
+            ),
           ],
         );
       },
@@ -157,11 +159,11 @@ class _ClientesPageState
   }
 
   openMapsSheet(context, index) async {
-    double lat = double.tryParse(widget.clientes[index].latitude);
-    double lng = double.tryParse(widget.clientes[index].longitude);
+    double lat = double.tryParse(widget.sequencia[index].lat);
+    double lng = double.tryParse(widget.sequencia[index].long);
     try {
-      final title = widget.clientes[index].fantasia;
-      final description = widget.clientes[index].idMultidev.toString();
+      final title = widget.sequencia[index].cliente.toString();
+      final description = widget.sequencia[index].cliente.toString();
       final coords = Coords(lat, lng);
       final availableMaps = await MapLauncher.installedMaps;
 
